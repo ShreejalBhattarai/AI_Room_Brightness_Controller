@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+voice_led_env/
+led_env/
+*.egg-info/
