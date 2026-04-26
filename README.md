@@ -1,6 +1,6 @@
-# AI Room Brightness Controller 🤖💡
+# AI Room Brightness Controller 
 
-Control a Raspberry Pi 3B+ LED using voice commands powered by a local AI model, or automatically via Mac camera brightness detection. Everything runs locally — no cloud, no subscriptions.
+Control a Raspberry Pi 3B+ LED using voice commands powered by a local AI model, or automatically via Mac camera brightness detection. Everything runs locally.
 
 ---
 
@@ -30,7 +30,7 @@ This project connects a Mac running a local LLM (Mistral via Ollama) to a Raspbe
 ### Components
 - Raspberry Pi 3B+ (Broadcom BCM2837B0, Cortex-A53, ARMv7, 1GB LPDDR2)
 - 1x LED
-- 1x 330Ω resistor (orange-orange-brown stripes)
+- 1x 330Ω resistor 
 - 2x jumper wires
 - MacBook Air (Mac camera used for automatic mode)
 
@@ -58,22 +58,22 @@ GPIO18 is one of the Pi's hardware PWM pins. PWM (Pulse Width Modulation) rapidl
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                    MacBook Air                   │
-│                                                  │
-│  control.py → manual.py  → Ollama (Mistral)      │
-│            ↘ automatic.py → OpenCV (camera)      │
-│                    │                             │
-│            HTTP POST /brightness                 │
+│                    MacBook Air                  │
+│                                                 │
+│  control.py → manual.py  → Ollama (Mistral)     │
+│            ↘ automatic.py → OpenCV (camera)     │
+│                    │                            │
+│            HTTP POST /brightness                │
 └────────────────────┼────────────────────────────┘
                      │ WiFi (same network)
 ┌────────────────────┼────────────────────────────┐
-│           Raspberry Pi 3B+                       │
-│                    │                             │
-│            led_server.py (Flask)                 │
-│                    │                             │
-│            RPi.GPIO (PWM)                        │
-│                    │                             │
-│            GPIO18 → LED                          │
+│           Raspberry Pi 3B+                      │
+│                    │                            │
+│            led_server.py (Flask)                │
+│                    │                            │
+│            RPi.GPIO (PWM)                       │
+│                    │                            │
+│            GPIO18 → LED                         │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -96,13 +96,13 @@ sudo raspi-config
 
 ```bash
 hostname -I
-# Returns something like: 192.168.1.115
+# Returns something like: 192.168.1.xxx
 ```
 
 ### 1.3 SSH from Mac
 
 ```bash
-ssh shreejal17@192.168.1.115
+ssh shreejal17@192.168.1.xxx
 ```
 
 ### 1.4 Create Python Virtual Environment on Pi
@@ -372,7 +372,7 @@ python control.py
 
 ```
 ╔══════════════════════════════════╗
-║     🤖 LED AI Controller         ║
+║        LED AI Controller         ║
 ║                                  ║
 ║  1 → Manual Mode (voice)         ║
 ║  2 → Automatic Mode (camera)     ║
@@ -425,7 +425,6 @@ raspberry_pi_mistral_project/
 ├── manual.py           # Voice + AI controlled LED (runs on Mac)
 ├── automatic.py        # Camera brightness controlled LED (runs on Mac)
 ├── led_server.py       # Flask REST API server (runs on Pi)
-├── config.example.py   # Template for sensitive config
 ├── .gitignore          # Excludes config.py, venvs, cache
 └── README.md           # This file
 ```
